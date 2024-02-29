@@ -9,15 +9,15 @@ class Handler(socketserver.BaseRequestHandler):
         string = data[1:]
 
         if operation == "W":
-            self.handleNoWords(string)
+            return self.handleNoWords(string)
         elif operation == "L":
-            self.handleNoLowercase(string)
+            return self.handleNoLowercase(string)
         elif operation == "U":
-            self.handleNoUppercase(string)
+            return self.handleNoUppercase(string)
         elif operation == "R":
-            self.handleNoNumeric(string)
+            return self.handleNoNumeric(string)
         elif operation == "T":
-            self.handleNoChar(string)
+            return self.handleNoChar(string)
         else:
             return string
 
