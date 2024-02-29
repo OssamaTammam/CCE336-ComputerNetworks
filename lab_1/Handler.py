@@ -2,7 +2,6 @@ import socketserver
 
 
 class Handler(socketserver.BaseRequestHandler):
-    ## TODO: Handle a request logic
     def handle(self):
         data = self.request.recv(1024)
         data = data.decode("utf-8").strip()
