@@ -9,45 +9,47 @@ class Handler(socketserver.BaseRequestHandler):
         string = data[1:]
 
         if operation == "W":
-            return self.handleNoWords(string)
+            response = self.handleNoWords(string)
         elif operation == "L":
-            return self.handleNoLowercase(string)
+            response = self.handleNoLowercase(string)
         elif operation == "U":
-            return self.handleNoUppercase(string)
+            response = self.handleNoUppercase(string)
         elif operation == "R":
-            return self.handleNoNumeric(string)
+            response = self.handleNoNumeric(string)
         elif operation == "T":
-            return self.handleNoChar(string)
+            response = self.handleNoChar(string)
         else:
-            return string
+            response = string + "\n"
+
+        self.request.sendall(response.encode("utf-8"))
 
     def handleNoWords(self, string):
-        return len(string.split())
+        return f"The number of words is {len(string.split())}\n"
 
     def handleNoLowercase(self, string):
         noLowerCase = 0
         for char in string:
             if ord(char) >= ord("a") and ord(char) <= ord("z"):
                 noLowerCase += 1
-        return noLowerCase
+        return f"The number of lowercase letters is {noLowerCase}\n"
 
     def handleNoUppercase(self, string):
         noUppercase = 0
         for char in string:
             if ord(char) >= ord("A") and ord(char) <= ord("Z"):
                 noUppercase += 1
-        return noUppercase
+        return f"The number of uppercase letters is {noUppercase}\n"
 
     def handleNoNumeric(self, string):
         noNumeric = 0
         for char in string:
             if ord(char) >= ord("0") and ord(char) <= ord("9"):
                 noNumeric += 1
-        return noNumeric
+        return f"The number of numeric letters is {noNumeric}\n"
 
     def handleNoChar(self, string):
         noChar = 0
         for char in string:
             if char != " ":
                 noChar += 1
-        return noChar
+        return f"The number of characters is {noChar}\n"
