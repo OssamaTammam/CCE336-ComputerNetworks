@@ -19,7 +19,7 @@ class Handler(socketserver.BaseRequestHandler):
         elif operation == "T":
             response = self.handleNoChar(string)
         else:
-            response = string + "\n"
+            response = data + "\n"
 
         self.request.sendall(response.encode("utf-8"))
 
