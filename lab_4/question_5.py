@@ -1,6 +1,5 @@
 import dns.resolver
 
-# Step 4: Determine the authoritative name server for the iit.ac.in domain
 domain = "iitb.ac.in"
 resolver = dns.resolver.Resolver()
 try:
@@ -14,7 +13,6 @@ try:
         first_authoritative_server,
     )
 
-    # Step 5: Find the IP address of the authoritative name server
     authoritative_ip = resolver.query(first_authoritative_server)
     print(
         "The IP address of the authoritative name server",
